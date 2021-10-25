@@ -146,7 +146,7 @@ export default class {
     }
 
     filteredBills(bills, getStatus(this.index)).forEach(bill => {
-      $('#open-bills${bill.id}').on("click", (e) => this.handleEditTicket(e, bill, bills))
+      $(`#open-bills${bill.id}`).on("click", (e) => this.handleEditTicket(e, bill, bills))
     })
 
     return filteredBills(bills, getStatus(this.index))
