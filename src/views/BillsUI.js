@@ -5,7 +5,6 @@ import LoadingPage from "./LoadingPage.js"
 import Actions from './Actions.js'
 
 const row = (bill) => {
-  console.log(bill.dateForSort)
   return (`
     <tr>
       <td>${bill.type}</td>
@@ -22,6 +21,7 @@ const row = (bill) => {
 
 const rows = (data) => {
   if (data && data.length) {
+    // Fonction qui sert à trier les dates non-formatées par ordre décroissant
     data.sort(function (a, b) {
       return (new Date(b.dateForSort) > new Date(a.dateForSort)) ? 1 : - 1;
     })

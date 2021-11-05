@@ -20,10 +20,13 @@ export default class NewBill {
     const filePath = e.target.value.split(/\\/g)
     const fileName = filePath[filePath.length-1]
     let fileInput = this.document.querySelector('input[data-testid="file"]')
-    const regex = /[.](gif|jpg|jpeg)$/i
+    const regex = /[.](png|jpg|jpeg)$/i
     let errorMessage = document.querySelector("#error-message")
 
-    if (fileName.match(regex)) {
+    // Si le nom du fichier correspond à la regex défini plus haut n'acceptant que les extensions png, jpg ou jpeg, alors la fonction d'upload se lance et le message d'erreur disparait
+    if (file.name.match(regex)) {
+      errorMessage.innerHTML = "";
+      if(this.firestore) {
       this.firestore
         .storage
         .ref(`justificatifs/${fileName}`)
@@ -33,6 +36,8 @@ export default class NewBill {
           this.fileUrl = url
           this.fileName = fileName
         })
+      }
+      // Sinon l'input est vidé et le message d'erreur apparait
     } else {
       fileInput.value = "";
       errorMessage.innerHTML = "Veuillez choisir une image au format png, jpg, ou jpeg"
