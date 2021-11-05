@@ -144,7 +144,10 @@ export default class {
         .html("")
       this.counter ++
     }
-
+    /* 
+    Fonction de correction du bug de dépliement de la liste des tickets où à travers une boucle on repasse sur chaque 
+    ticket pour y greffer un écouteur d'événement qui va lancer la fonction qui permet de les éditer
+    */
     filteredBills(bills, getStatus(this.index)).forEach(bill => {
       $(`#open-bills${bill.id}`).on("click", (e) => this.handleEditTicket(e, bill, bills))
     })
